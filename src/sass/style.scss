@@ -1,0 +1,150 @@
+@import "~bootstrap/scss/bootstrap";
+$body-w:100%;
+$body-h:100%;
+$primary-color:#1f1f21;
+$secondary-color: #f44336;
+$font-color:white;
+$height-card: 300px;
+$width-card: 300%;
+$margin-acceuil:30px;
+$margin-top-welcome:60px;
+$font-size-paragraph:20px;
+$padding-top-paragraph:40px;
+$margin-top-card:10px;
+$padding-website-top:14px;
+$padding-website-right:25px;
+$hight-img-detail:400px;
+$width-img-detail:700px;
+$ft-s-buy:40px;
+
+
+@mixin styling-paragraph(){
+    padding-top: $padding-top-paragraph;   
+    color:$font-color;
+    font-size: $font-size-paragraph;
+    text-align: justify; 
+}
+
+@mixin flex-card() {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+body {
+    width:$body-w;
+    height: $body-h;
+    background-color:$primary-color;
+    color:$font-color;
+  }
+
+.acceuil{
+    margin:$margin-acceuil;
+    align-items: center;
+
+}  
+.title-acceuil{
+    color: $secondary-color;
+    font-weight: bold;
+} 
+
+.welcome{
+ margin-top: $margin-top-welcome;   
+ color:$font-color;
+ font-weight: bold;  
+}
+
+p{
+    @include styling-paragraph();
+}
+  
+/*PageList*/
+.cards {
+   @include flex-card();
+  }
+
+  .title-link:link,.title-link:active,.title-link:visited{
+      color:$secondary-color;
+      text-decoration: none;
+  }
+  
+  .card-game {
+    width: $width-card;
+    border: none;
+    background-color: $primary-color;
+  }
+
+  .name {
+      color: $font-color;
+  }
+
+  
+  .card-img-top {
+    height: $height-card;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0;
+  }
+  
+  .card-title {
+    margin-top: $margin-top-card;
+    font-weight: bolder;
+    text-transform: uppercase;
+    color: $font-color;
+    text-align: left;
+  }
+
+/*PageDetail*/
+
+.page-detail{
+    align-items: center;
+    justify-content:center; 
+   
+}
+.website:link{
+    background-color: $secondary-color;
+    color:$font-color;
+    padding: $padding-website-top $padding-website-right;
+    text-align: center;
+    text-decoration: none !important;
+  }
+
+
+.image-detail{
+    display: flex;
+    height: $hight-img-detail;
+    width: $width-img-detail; 
+}
+
+.title-detail{
+    color: $font-color;
+    font-weight: bold;
+}
+.rating{
+    font-weight: bold;
+    color: $secondary-color;
+} 
+
+.description{   
+    color:$font-color;
+    text-align: justify;
+    font-size: $font-size-paragraph;     
+}
+
+.plot{
+    font-weight: bold;  
+}
+
+div.plot,p{
+    padding-top: 0;
+}
+
+.hidden{
+    display:none;
+}
+
+.buy{
+    color: $secondary-color;
+    font-size : $ft-s-buy;
+    font-weight: bolder;
+}
