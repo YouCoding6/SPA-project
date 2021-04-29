@@ -13,7 +13,7 @@ const PageDetail = (argument) => {
 
           console.log(response.website)
 
-          let { name, rating, ratings, website, description, released, stores, genres, tags, background_image, developers, platforms, publishers } = response;
+          let { name, rating, ratings, website, id, screenshots_count, description, released, stores, genres, tags, background_image, developers, platforms, publishers } = response;
 
           let articleDOM = document.querySelector(".page-detail .article");
           articleDOM.querySelector(".image-detail").src = background_image;
@@ -22,30 +22,90 @@ const PageDetail = (argument) => {
           articleDOM.querySelector(".rating").innerHTML = rating + " /5 - " + ratings.length + " votes"
           articleDOM.querySelector(".release-date").innerHTML = released;
           articleDOM.querySelector(".description").innerHTML = description;
-          developers.forEach(developer => {
-            articleDOM.querySelector(".developers").innerHTML += developer.name;
-          });
-          platforms.forEach(element => {
-            articleDOM.querySelector(".platforms").innerHTML += element.platform.name + ", ";
-          });
-          publishers.forEach(publisher => {
-            articleDOM.querySelector(".publishers").innerHTML += publisher.name + ", ";
-          });
-          tags.forEach(tag => {
-            articleDOM.querySelector(".tags").innerHTML += tag.name + ", ";
-          });
-          genres.forEach(genre => {
-            articleDOM.querySelector(".genres").innerHTML += genre.name + ", ";
-          });
-          stores.forEach(element => {
-            articleDOM.querySelector(".stores").innerHTML += element.store.name + ", ";
-            // articleDOM.querySelector(".stores").href += "https:/" + element.store.domain + ", ";
-            console.log(element.store.domain)
 
-          });
-          // articleDOM.querySelector(".stores").href += "https:/" + element.store.domain + ", ";
+          if (developers) {
+            developers.forEach((developer, index) => {
+              if (index < developers.length - 1) {
+                articleDOM.querySelector(".developers").innerHTML += developer.name + ", ";
+              }
+              else {
+                articleDOM.querySelector(".developers").innerHTML += developer.name;
+
+              }
+            })
+          };
+          if (platforms) {
+            platforms.forEach((element, index) => {
+              if (index < platforms.length - 1) {
+                articleDOM.querySelector(".platforms").innerHTML += element.platform.name + ", ";
+              }
+              else {
+                articleDOM.querySelector(".platforms").innerHTML += element.platform.name;
+              }
+            })
+          }
+          if (publishers) {
+            publishers.forEach((publisher, index) => {
+              if (index < publishers.length - 1) {
+                articleDOM.querySelector(".publishers").innerHTML += publisher.name + ", ";
+              }
+              else {
+                articleDOM.querySelector(".publishers").innerHTML += publisher.name;
+
+              }
+            })
+          }
+          if (tags) {
+            tags.forEach((tag, index) => {
+              if (index < tags.length - 1) {
+                articleDOM.querySelector(".tags").innerHTML += tag.name + ", ";
+              }
+              else {
+                articleDOM.querySelector(".tags").innerHTML += tag.name;
+              }
+            })
+          }
+          if (genres) {
+            genres.forEach((genre, index) => {
+              if (index < genres.length - 1) {
+                articleDOM.querySelector(".genres").innerHTML += genre.name + ", ";
+              }
+              else {
+                articleDOM.querySelector(".genres").innerHTML += genre.name;
+              }
+            })
+          }
+          if (stores) {
+            stores.forEach(element => {
+              articleDOM.querySelector(".stores").innerHTML += `
+                <a href="${element.url}"><span class="link">${element.store.name}</a><br>`;
+            })
+          }
+          if (screenshots_count > 0) {
+            fetchScreenshots(id);
+          }
         });
     };
+
+    const fetchScreenshots = (idGame) => {
+      let finalURL = `https://api.rawg.io/api/games/${idGame}/screenshots${apiKey}`
+      fetch(finalURL)
+        .then((response) => response.json())
+        .then((response) => {
+          response.results.forEach((result, index) => {
+            if (index < 4) {
+              document.querySelector(".card-screenshots").innerHTML += `
+            
+                <div class="card-game-screenshot col-md-6 my-2"> 
+                  <img alt="${name}" class="game-screenshot" src="${result.image}">  
+                </div>
+          
+              `;
+            }
+          });
+
+        })
+    }
 
     fetchGame("https://api.rawg.io/api/games/", cleanedArgument);
   };
@@ -54,7 +114,10 @@ const PageDetail = (argument) => {
       <section class="page-detail mb-5"> 
         <div class="article">
           <img class="image-detail mt-4 mx-auto d-block w-100" src="" alt="Card image">
-          <a href="" class="website mt-5">Check website</a>   
+          <div class="website-btn"> 
+            <a href="" class="website mt-5">Check website</a> 
+          </div>
+           
           <div class="row align-items-center mt-3 mb-4">
             <div class="col-md-8">        
               <h3 class="title-detail mt-3"></h3>
@@ -101,9 +164,12 @@ const PageDetail = (argument) => {
               </div>
             </div>
           </div>
-
-          <div class="buy mb-1">Buy</div>
-          <a href="" class="stores"></a>
+          <div class="stores"> 
+           <div class="buy mb-1">Buy</div>
+          </div>
+          <div class=" row card-screenshots mt-3">
+           
+          </div>
         </div>
       </section>
     `;

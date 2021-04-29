@@ -1,11 +1,15 @@
 @import "~bootstrap/scss/bootstrap";
 $body-w:100%;
 $body-h:100%;
+$margin-t-img-detail: -45px;
+$margin-r-img-detail: 0px;
+$margin-b-img-detail: 0px;
+$margin-l-img-detail: 943px;
 $primary-color:#1f1f21;
 $secondary-color: #f44336;
 $font-color:white;
 $height-card: 300px;
-$width-card: 300%;
+$width-card: 30%;
 $margin-acceuil:30px;
 $margin-top-welcome:60px;
 $font-size-paragraph:20px;
@@ -15,6 +19,7 @@ $padding-website-top:14px;
 $padding-website-right:25px;
 $hight-img-detail:400px;
 $width-img-detail:700px;
+$height-screenshot:300px;
 $ft-s-buy:40px;
 
 
@@ -81,7 +86,7 @@ p{
   
   .card-img-top {
     height: $height-card;
-    width: 100%;
+    width: $body-w;
     object-fit: cover;
     border-radius: 0;
   }
@@ -109,12 +114,12 @@ p{
     text-decoration: none !important;
   }
 
+.website-btn {
+    position: absolute;
+    margin: $margin-t-img-detail $margin-r-img-detail $margin-b-img-detail $margin-l-img-detail;
+    display: block;
+} 
 
-.image-detail{
-    display: flex;
-    height: $hight-img-detail;
-    width: $width-img-detail; 
-}
 
 .title-detail{
     color: $font-color;
@@ -148,3 +153,18 @@ div.plot,p{
     font-size : $ft-s-buy;
     font-weight: bolder;
 }
+
+.card-screenshots{
+  
+}
+.game-screenshot{
+    width: $body-w;
+    height: $body-h;
+    object-fit: cover;
+
+}
+
+.card-game-screenshot {
+    height: $height-screenshot;
+    overflow: hidden;
+  }

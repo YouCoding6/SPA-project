@@ -55,13 +55,13 @@ const PageList = (argument) => {
           response.results.forEach((game) => {
 
             games += `
-                    <div class="card-game col-4 p-0 col-md-3 m-4" style="width: 26rem;">
+                    <div class="card-game col-4 p-0 col-md-3 m-4" ">
                       <img class="card-img-top flex-img" src="${displayImage(game)}" alt="Card image">    
                       <div class=" mt-2 mb-2"> 
                         <a href = "#pagedetail/${game.id}" class="name">${game.name}</a>
                       </div>
                       <div class="row">
-                        ${logoStore(game.stores)}
+                        ${logoStore(game.parent_platforms)}
                       </div>
                     </div>
                   `;
@@ -94,7 +94,7 @@ const PageList = (argument) => {
     let str = ""
     if (game) {
       game.forEach((element) => {
-        str += `<img class="col-md-2 logo" src="src/images/` + element.store.slug + `.svg">`
+        str += `<img class="col-md-2 logo" src="src/images/` + element.platform.slug + `.svg">`
       });
     }
     return str

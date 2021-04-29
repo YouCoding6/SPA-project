@@ -9971,7 +9971,7 @@ p {
 }
 
 .card-game {
-  width: 300%;
+  width: 30%;
   border: none;
   background-color: #1f1f21;
 }
@@ -10009,10 +10009,10 @@ p {
   text-decoration: none !important;
 }
 
-.image-detail {
-  display: flex;
-  height: 400px;
-  width: 700px;
+.website-btn {
+  position: absolute;
+  margin: -45px 0px 0px 943px;
+  display: block;
 }
 
 .title-detail {
@@ -10047,4 +10047,15 @@ div.plot, p {
   color: #f44336;
   font-size: 40px;
   font-weight: bolder;
+}
+
+.game-screenshot {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-game-screenshot {
+  height: 300px;
+  overflow: hidden;
 }
