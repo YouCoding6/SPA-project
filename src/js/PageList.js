@@ -44,7 +44,7 @@ const PageList = (argument) => {
         finalURL = url + "?search=" + argument + apiKey;
       }
       else {
-        finalURL = url + "?dates=2015-01-01,2025-12-31" + apiKey;
+        finalURL = url + "?dates=2022-01-01,2022-12-31" + apiKey;
       }
 
       fetch(`${finalURL}`)
